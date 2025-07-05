@@ -11,7 +11,7 @@ import { QuizComponent } from './components/pages/quiz';
           href="/"
           class="logo-link">
           <img
-            src="logo-van-dyke-mortgage.png"
+            src="/logo-van-dyke-mortgage.png"
             alt="Van Dyke Mortgage - Joseph Longobardi"
             class="logo" />
         </a>
@@ -32,7 +32,7 @@ import { QuizComponent } from './components/pages/quiz';
       <div class="s-container">
         <div class="profile">
           <img
-            src="joseph-longobardi.jpg"
+            src="/joseph-longobardi.jpg"
             alt="Van Dyke Mortgage - Joseph Longobardi"
             class="logo" />
           <div>

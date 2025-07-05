@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular App
-        run: npm run build -- --configuration production --base-href /longobardi/
+        run: npm run build -- --configuration production --base-href /longobardi-2025/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
