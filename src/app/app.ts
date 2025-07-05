@@ -22,10 +22,20 @@ import { QuizComponent } from './components/pages/quiz';
     </div>
     <section class="stats">
       <div class="s-container">
-        <div>100K+<span>units closed since 2006</span></div>
-        <div>25+<span>years of experience</span></div>
-        <div>4.9<span>out of 5 stars</span></div>
-        <div>$20.8B+<span>funded volume since 2006</span></div>
+        <div>3-time<span>President's Club winner</span></div>
+        <div>
+          5.0 Star Reviews<span
+            ><a
+              href="https://birdeye.com/joseph-longobardi-vandyk-mortgage-corporation-169636491452692"
+              target="_blank"
+              >from 336 happy clients</a
+            ></span
+          >
+        </div>
+        <div>$1,400 Million+<span>funded volume since 2014</span></div>
+        <div class="line">
+          Direct mortgage lender <span>offering FHA, VA, USDA, Conventional, Jumbo, DSCR/Investor and bank statement loans</span>
+        </div>
       </div>
     </section>
     <section>
