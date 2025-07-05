@@ -20,6 +20,14 @@ import { QuizComponent } from './components/pages/quiz';
     <div class="s-container">
       <app-quiz></app-quiz>
     </div>
+    <section class="stats">
+      <div class="s-container">
+        <div>100K+<span>units closed since 2006</span></div>
+        <div>25+<span>years of experience</span></div>
+        <div>4.9<span>out of 5 stars</span></div>
+        <div>$20.8B+<span>funded volume since 2006</span></div>
+      </div>
+    </section>
     <section>
       <div class="s-container">
         <div class="profile">

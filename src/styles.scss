@@ -10,7 +10,7 @@ html {
         primary: mat.$green-palette,
         tertiary: mat.$blue-palette,
       ),
-      typography: Roboto,
+      typography: Barlow,
       density: 0,
     )
   );
@@ -21,7 +21,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Barlow, 'Helvetica Neue', sans-serif;
 }
 
 mat-progress-bar {
@@ -65,7 +65,6 @@ button {
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 2rem;
   text-align: left;
 
   img {
@@ -77,18 +76,39 @@ button {
   text-align: left;
   max-width: 650px;
   margin: 0 auto;
-
-  padding-bottom: 4rem;
+  padding: 2rem 0 4rem 0;
 }
 
 section {
-  margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-  color: white;
-  background-color: rgb(90, 134, 89);
+  background-color: rgba(90, 134, 89, 0.3);
   margin-bottom: 0;
   padding-bottom: 0;
+
+  &.stats {
+    background-color: rgba(90, 134, 89, 1);
+    color: white;
+    padding: 1rem 0;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      > div {
+        display: flex;
+        flex-direction: column;
+        font-size: 2rem;
+        font-weight: bold;
+        line-height: 2rem;
+
+        span {
+          font-size: 1rem;
+          font-weight: normal;
+        }
+      }
+    }
+  }
 }
 
 header {
