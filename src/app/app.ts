@@ -25,7 +25,7 @@ import { QuizComponent } from './components/pages/quiz';
         <div>Direct mortgage lender <span>offering FHA, VA, USDA, Conventional, Jumbo, DSCR/Investor and bank statement loans</span></div>
         <div class="line">3-time<span>President's Club winner</span></div>
         <div>
-          5.0 Star Reviews<span
+          5.0 star reviews<span
             ><a
               href="https://birdeye.com/joseph-longobardi-vandyk-mortgage-corporation-169636491452692"
               target="_blank"
