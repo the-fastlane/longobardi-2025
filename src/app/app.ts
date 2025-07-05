@@ -8,7 +8,7 @@ import { QuizComponent } from './components/pages/quiz';
   template: `<header>
       <nav class="s-container">
         <a
-          href="/"
+          href=""
           class="logo-link">
           <img
             src="logo-van-dyke-mortgage.png"

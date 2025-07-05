@@ -229,22 +229,22 @@ export class QuizComponent implements AfterViewInit {
       cards: [
         {
           title: 'Single Family',
-          imageUrl: '/single-family-home.png',
+          imageUrl: 'single-family-home.png',
           value: 'Single Family',
         },
         {
           title: 'Condominium',
-          imageUrl: '/condominium.png',
+          imageUrl: 'condominium.png',
           value: 'Condominium',
         },
         {
           title: 'Townhouse',
-          imageUrl: '/townhome.png',
+          imageUrl: 'townhome.png',
           value: 'Townhouse',
         },
         {
           title: 'Multi-Family Home',
-          imageUrl: '/multi-family-home.png',
+          imageUrl: 'multi-family-home.png',
           value: 'Multi-Family Home',
         },
       ],
