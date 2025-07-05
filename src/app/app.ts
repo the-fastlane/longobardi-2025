@@ -11,7 +11,7 @@ import { QuizComponent } from './components/pages/quiz';
           href="/"
           class="logo-link">
           <img
-            src="/logo-van-dyke-mortgage.png"
+            src="logo-van-dyke-mortgage.png"
             alt="Van Dyke Mortgage - Joseph Longobardi"
             class="logo" />
         </a>
@@ -32,7 +32,7 @@ import { QuizComponent } from './components/pages/quiz';
       <div class="s-container">
         <div class="profile">
           <img
-            src="/joseph-longobardi.jpg"
+            src="joseph-longobardi.jpg"
             alt="Van Dyke Mortgage - Joseph Longobardi"
             class="logo" />
           <div>
@@ -66,10 +66,10 @@ import { QuizComponent } from './components/pages/quiz';
     <footer>
       <div class="s-container">
         <img
-          src="/cert-mba.png"
+          src="cert-mba.png"
           alt="Mortgage Bankers Association" />
         <img
-          src="/cert-30years.png"
+          src="cert-30years.png"
           alt="30 Years in Business" />
         <div class="copyright">
           <p>Copyright &copy; 2024 Joseph Longobardi, VanDyk Mortgage Maryland, NMLS#: 399823</p>

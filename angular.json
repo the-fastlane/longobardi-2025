@@ -32,7 +32,8 @@
             "ssr": {
               "entry": "src/server.ts"
             },
-            "baseHref": "/longobardi-2025/"
+            "baseHref": "/longobardi-2025/",
+            "deployUrl": "/longobardi-2025/"
           },
           "configurations": {
             "production": {
