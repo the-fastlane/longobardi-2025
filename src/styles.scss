@@ -1,0 +1,188 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$green-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+mat-progress-bar {
+  margin-top: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+button {
+  width: auto;
+}
+
+.s-container {
+  text-align: center;
+}
+
+.buttons-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.quiz-container {
+  position: relative;
+  width: 100%;
+  margin-top: 1rem;
+  min-height: 500px;
+}
+
+.step {
+  padding-top: 1rem;
+}
+
+.profile {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  text-align: left;
+
+  img {
+    border-radius: 2rem;
+  }
+}
+
+.about {
+  text-align: left;
+  max-width: 650px;
+  margin: 0 auto;
+
+  padding-bottom: 4rem;
+}
+
+section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  color: white;
+  background-color: rgb(90, 134, 89);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+header {
+  background-color: rgb(90, 134, 89);
+  .logo {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .logo-link {
+    border: 0;
+  }
+  padding: 1rem;
+}
+
+footer {
+  padding: 3rem 0;
+  background-color: rgb(55, 96, 130);
+  color: white;
+  img {
+    max-height: 100px;
+  }
+}
+
+.copyright {
+  padding-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.free {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: green; // Orange color for emphasis
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  gap: 1rem;
+  cursor: pointer;
+  @media (min-width: 0) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .mat-mdc-card-header {
+    margin: 0 auto;
+  }
+  .mat-mdc-card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.quiz-input {
+  mat-form-field {
+    margin-right: 1rem;
+  }
+}
+
+.slider-step {
+  @include mat.slider-overrides(
+    (
+      active-track-color: orange,
+      active-track-shape: red,
+    )
+  );
+
+  mat-slider {
+    width: 100%;
+  }
+
+  text-align: center;
+  padding: 1rem;
+
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    padding: 0 0.5rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .slider-value {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
