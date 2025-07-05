@@ -22,7 +22,8 @@ import { QuizComponent } from './components/pages/quiz';
     </div>
     <section class="stats">
       <div class="s-container">
-        <div>3-time<span>President's Club winner</span></div>
+        <div>Direct mortgage lender <span>offering FHA, VA, USDA, Conventional, Jumbo, DSCR/Investor and bank statement loans</span></div>
+        <div class="line">3-time<span>President's Club winner</span></div>
         <div>
           5.0 Star Reviews<span
             ><a
@@ -33,9 +34,6 @@ import { QuizComponent } from './components/pages/quiz';
           >
         </div>
         <div>$1,400 Million+<span>funded volume since 2014</span></div>
-        <div class="line">
-          Direct mortgage lender <span>offering FHA, VA, USDA, Conventional, Jumbo, DSCR/Investor and bank statement loans</span>
-        </div>
       </div>
     </section>
     <section>
