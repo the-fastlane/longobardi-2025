@@ -1,15 +1,12 @@
-name: Deploy Angular App to GitHub Pages
+name: Deploy Angular SSR to DigitalOcean
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,11 +21,16 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Build Angular App
+      - name: Build Angular SSR
         run: npm run build -- --configuration production --base-href /longobardi-2025/
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: dist/longobardi/browser
+      - name: Deploy to DigitalOcean
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_FEB_2025 }}
+          DROPLET_IP: ${{ secrets.SERVER_IP }}
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "rm -rf /var/www/longobardi/*"
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/longobardi-2025/browser/ root@$DROPLET_IP:/var/www/longobardi/
+          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "systemctl restart nginx"
+          rm -f private_key  # Clean up private key
