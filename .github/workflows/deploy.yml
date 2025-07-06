@@ -31,6 +31,6 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "rm -rf /var/www/longobardi/*"
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/longobardi-2025/browser/ root@$DROPLET_IP:/var/www/longobardi/
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/longobardi/browser/ root@$DROPLET_IP:/var/www/longobardi/
           ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "systemctl restart nginx"
           rm -f private_key  # Clean up private key
