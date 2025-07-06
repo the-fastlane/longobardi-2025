@@ -33,7 +33,7 @@ import { QuizComponent } from './components/pages/quiz';
             ></span
           >
         </div>
-        <div>$1,400 Million+<span>funded volume since 2014</span></div>
+        <div>$250 Million+<span>funded volume since 2014</span></div>
       </div>
     </section>
     <section>
