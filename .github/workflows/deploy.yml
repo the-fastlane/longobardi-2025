@@ -30,7 +30,7 @@ jobs:
           DROPLET_IP: ${{ secrets.SERVER_IP }}
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "rm -rf /var/www/longobardi/*"
-          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/longobardi/browser/ root@$DROPLET_IP:/var/www/longobardi/
+          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "rm -rf /var/www/longobardi/longobardi-2025/*"
+          rsync -avz -e "ssh -i private_key -o StrictHostKeyChecking=no" dist/longobardi/browser/ root@$DROPLET_IP:/var/www/longobardi/longobardi-2025/
           ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "systemctl restart nginx"
           rm -f private_key  # Clean up private key
