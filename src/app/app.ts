@@ -41,8 +41,7 @@ import { QuizComponent } from './components/pages/quiz';
         <div class="profile">
           <img
             src="joseph-longobardi.jpg"
-            alt="Van Dyke Mortgage - Joseph Longobardi"
-            class="logo" />
+            alt="Van Dyke Mortgage - Joseph Longobardi" />
           <div>
             <h3>Joseph Longobardi</h3>
             <p><b>Branch Manager | NMLS#: 399823</b></p>

@@ -60,15 +60,18 @@ button {
 }
 
 .profile {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
   height: 100%;
   text-align: left;
+  max-width: 650px;
+  margin: 0 auto;
 
   img {
     border-radius: 2rem;
+    width: 100%;
   }
 }
 
