@@ -25,7 +25,7 @@ html {
 // Add this to override hover styles globally:
 button.quiz-option {
   transition:
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.2s;
   will-change: transform, box-shadow;
 }
