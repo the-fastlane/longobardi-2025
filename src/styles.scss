@@ -15,6 +15,26 @@ html {
     )
   );
 }
+
+:root {
+  --primary-color: #5a8659; // Green
+  --secondary-color: #375680; // Blue
+  --accent-color: orange; // Orange
+}
+
+// Add this to override hover styles globally:
+button.quiz-option {
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s;
+  will-change: transform, box-shadow;
+}
+button.quiz-option:hover {
+  background-color: black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
 html,
 body {
   height: 100%;
@@ -140,7 +160,7 @@ section {
 }
 
 header {
-  background-color: rgb(90, 134, 89);
+  background-color: var(--primary-color);
   .logo {
     width: 150px;
     height: auto;
@@ -154,7 +174,7 @@ header {
 
 footer {
   padding: 3rem 0;
-  background-color: rgb(55, 96, 130);
+  background-color: var(--secondary-color);
   color: white;
   img {
     max-height: 100px;
@@ -169,7 +189,7 @@ footer {
 .free {
   font-weight: bold;
   font-size: 1.5rem;
-  color: green; // Orange color for emphasis
+  color: var(--primary-color);
   margin-top: 1rem;
 }
 
@@ -186,6 +206,18 @@ h2 {
   }
   @media (min-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  mat-card {
+    transition:
+      transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.2s;
+    will-change: transform, box-shadow;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
   }
 
   .mat-mdc-card-header {
@@ -207,8 +239,7 @@ h2 {
 .slider-step {
   @include mat.slider-overrides(
     (
-      active-track-color: orange,
-      active-track-shape: red,
+      active-track-color: var(--accent-color),
     )
   );
 
