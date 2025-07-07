@@ -1,5 +1,5 @@
 export interface QuizStep {
-  type: 'buttons' | 'input' | 'cards' | 'slider' | 'info';
+  type: 'buttons' | 'input' | 'cards' | 'slider' | 'info' | 'results';
   question: string;
   formKey: string;
   label?: string;

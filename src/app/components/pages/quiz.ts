@@ -92,6 +92,19 @@ import { trigger, transition, style, animate } from '@angular/animations';
         </div>
       }
 
+      <!-- RESULTS TYPE -->
+      @if (currentStep.type === 'results') {
+        <div class="results-step step">
+          <pre>{{ formData | json }}</pre>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="previousStep()">
+            ← Back
+          </button>
+        </div>
+      }
+
       <!-- CARD TYPE -->
       @if (currentStep.type === 'cards') {
         <div class="step">
@@ -389,6 +402,14 @@ export class QuizComponent implements AfterViewInit {
       question: 'Phone number',
       inputType: 'tel',
       formKey: 'phone',
+    },
+    {
+      type: 'results',
+      question: '',
+      formKey: 'results',
+      html: `<h1>You did it!</h1>
+            <p>We will review your information and get back to you shortly with personalized options.</p>
+            <p>If you have any questions, feel free to reach out to us at <a href="tel:410-960-7639">410-960-7639</a>.</p>`,
     },
   ];
 

@@ -94,25 +94,35 @@ section {
 
     > div {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
+
+      @media (min-width: 900px) {
+        flex-direction: row;
+      }
+
       > div {
         display: flex;
         flex-direction: column;
         font-size: 2rem;
         font-weight: bold;
         line-height: 2rem;
-        min-width: 230px;
+        //min-width: 230px;
 
         a {
           color: white;
         }
 
         &.line {
-          border-left: 2px solid white;
-          padding-left: 1rem;
-          margin-left: 1rem;
+          border-left: 0;
+
+          @media (min-width: 900px) {
+            border-left: 2px solid white;
+            padding-left: 1rem;
+            margin-left: 1rem;
+          }
         }
 
         span {

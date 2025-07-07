@@ -80,7 +80,7 @@ import { QuizComponent } from './components/pages/quiz';
           src="cert-30years.png"
           alt="30 Years in Business" />
         <div class="copyright">
-          <p>Copyright &copy; 2024 Joseph Longobardi, VanDyk Mortgage Maryland, NMLS#: 399823</p>
+          <p>Copyright &copy; {{ currentYear }} Joseph Longobardi, VanDyk Mortgage Maryland, NMLS#: 399823</p>
           <p>
             Mortgage Loan Disclosure: Obtaining a mortgage loan involves various fees that can differ depending on factors like loan amount, credit
             score, and property location. These fees may include, but are not limited to, origination charges, appraisal costs, title insurance, and
@@ -92,4 +92,5 @@ import { QuizComponent } from './components/pages/quiz';
 })
 export class App {
   protected title = 'longobardi';
+  protected currentYear = new Date().getFullYear();
 }
