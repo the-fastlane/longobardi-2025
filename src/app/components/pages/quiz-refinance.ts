@@ -14,7 +14,7 @@ import { QuizStep } from '../models/quiz.model';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-quiz',
+  selector: 'app-quiz-refinance',
   imports: [
     CommonModule,
     MatCardModule,
@@ -224,7 +224,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
       }
     </div>`,
 })
-export class QuizComponent implements AfterViewInit {
+export class QuizComponent_Refinance implements AfterViewInit {
   currentStepIndex = signal(0);
   formData: Record<any, any> = {};
 

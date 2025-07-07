@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { QuizComponent } from './components/pages/quiz';
 
 @Component({
   selector: 'app-root',
-  imports: [QuizComponent],
+  imports: [RouterOutlet],
   template: `<header>
       <nav class="s-container">
         <a
@@ -18,7 +17,7 @@ import { QuizComponent } from './components/pages/quiz';
       </nav>
     </header>
     <div class="s-container">
-      <app-quiz></app-quiz>
+      <router-outlet></router-outlet>
     </div>
     <section class="stats">
       <div class="s-container">
