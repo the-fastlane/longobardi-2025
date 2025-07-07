@@ -20,6 +20,8 @@ html {
   --primary-color: #5a8659; // Green
   --secondary-color: #375680; // Blue
   --accent-color: orange; // Orange
+
+  --s-color-light-theme-primary: var(--primary-color);
 }
 
 // Add this to override hover styles globally:

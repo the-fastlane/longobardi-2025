@@ -45,15 +45,21 @@ import { QuizComponent } from './components/pages/quiz';
           <div>
             <h3>Joseph Longobardi</h3>
             <p><b>Branch Manager | NMLS#: 399823</b></p>
-            <p>VanDyk Mortgage Maryland</p>
-            <p>Call or Text: 410-960-7639</p>
+            <p>
+              <a
+                href="https://josephlongobardi.vandykmortgage.com/"
+                target="_blank"
+                >VanDyk Mortgage Maryland</a
+              >
+            </p>
+            <p>Call or Text: <a href="tel:410-960-7639">410-960-7639</a></p>
           </div>
         </div>
         <div class="about">
           <p>
-            I truly love helping clients and I love my job! There are many lenders out there, but I strive to stand out by offering something that
-            can’t be replicated: authentic, personalized care. I treat every client and realtor partner like family, providing exceptional service and
-            unwavering attention from the first conversation to the final closing.
+            <em>I truly love helping clients and I love my job!</em> There are many lenders out there, but I strive to stand out by offering something
+            that can’t be replicated: <b>authentic, personalized care</b>. I treat every client and realtor partner like family, providing exceptional
+            service and unwavering attention from the first conversation to the final closing.
           </p>
           <p>That means:</p>
           <ul>
