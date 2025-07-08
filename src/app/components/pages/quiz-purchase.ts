@@ -106,11 +106,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
             thumbLabel>
             <input
               matSliderStartThumb
-              [value]="currentValue ? currentValue : currentStep.sliderConfig?.min"
+              [value]="currentRangeValues[0] ? currentRangeValues[0] : currentStep.sliderConfig?.min"
               #sliderMin />
             <input
               matSliderEndThumb
-              [value]="currentValue ? currentValue : currentStep.sliderConfig?.defaultValue"
+              [value]="currentRangeValues[1] ? currentRangeValues[1] : currentStep.sliderConfig?.defaultValue"
               #sliderMax />
           </mat-slider>
           <div class="slider-labels">
@@ -482,6 +482,9 @@ export class QuizComponent_Purchase implements AfterViewInit {
 
   get currentValue() {
     return this.formData[this.currentStep.formKey] ?? null;
+  }
+  get currentRangeValues() {
+    return this.formData[this.currentStep.formKey] ?? [this.currentStep.sliderConfig?.min, this.currentStep.sliderConfig?.defaultValue];
   }
 
   addNumbers(a: number, b: number): number {
