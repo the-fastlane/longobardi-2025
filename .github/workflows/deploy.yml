@@ -22,8 +22,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular SSR
-        run: |
-          npm run build -- --configuration production --base-href /
+        run: npm run build -- --configuration production --base-href /
 
       - name: Deploy to DigitalOcean
         env:
