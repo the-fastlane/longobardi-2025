@@ -155,7 +155,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
       <!-- CARD TYPE -->
       @if (currentStep.type === 'cards') {
         <div class="step">
-          <div class="card-grid-purchase">
+          <div class="card-grid card-grid-purchase">
             @for (card of currentStep.cards; track card) {
               <mat-card
                 class="quiz-card"
