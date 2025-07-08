@@ -251,6 +251,27 @@ h2 {
   }
 }
 
+.homepage-decision {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  //justify-items: center;
+  mat-card {
+    width: 100%;
+    max-width: 200px;
+    background: var(--secondary-color);
+    img {
+      max-width: 75px;
+      margin: 0 auto;
+      padding-top: 1rem;
+    }
+  }
+  mat-card-title {
+    color: white;
+  }
+}
+
 .quiz-input {
   mat-form-field {
     margin-right: 1rem;
