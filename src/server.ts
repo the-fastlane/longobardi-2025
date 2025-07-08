@@ -1,66 +1,61 @@
+import { AngularNodeAppEngine, createNodeRequestHandler, isMainModule, writeResponseToNodeResponse } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
-import { existsSync } from 'node:fs';
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-import cors from 'cors';
 
-dotenv.config();
+const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const distFolder = join(process.cwd(), 'browser');
-const indexHtml = existsSync(join(distFolder, 'index.html')) ? 'index.html' : '';
+const angularApp = new AngularNodeAppEngine();
 
-const PORT = 4001;
+/**
+ * Example Express Rest API endpoints can be defined here.
+ * Uncomment and define endpoints as necessary.
+ *
+ * Example:
+ * ```ts
+ * app.get('/api/{*splat}', (req, res) => {
+ *   // Handle API request
+ * });
+ * ```
+ */
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.static(distFolder));
+/**
+ * Serve static files from /browser
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
 
-// ---------------- API ENDPOINTS ----------------
-
-app.post('/api/send-lead', async (req, res) => {
-  const data = req.body;
-  console.log('Received lead data:', data);
-
-  // if (!data || !data.email || !data.name) {
-  //   return res.status(400).json({ error: 'Missing required fields' });
-  // }
-
-  // try {
-  //   const transporter = nodemailer.createTransport({
-  //     host: process.env.SMTP_HOST,
-  //     port: Number(process.env.SMTP_PORT || 465),
-  //     secure: true,
-  //     auth: {
-  //       user: process.env.SMTP_USER,
-  //       pass: process.env.SMTP_PASS,
-  //     },
-  //   });
-
-  //   await transporter.sendMail({
-  //     from: `"Mortgage Quiz" <${process.env.SMTP_USER}>`,
-  //     to: process.env.RECIPIENT_EMAIL,
-  //     subject: `New Lead from ${data.name}`,
-  //     text: `New form submission:\n\n${JSON.stringify(data, null, 2)}`,
-  //   });
-
-  //   res.json({ success: true });
-  // } catch (error) {
-  //   console.error('Email error:', error);
-  //   res.status(500).json({ error: 'Failed to send email' });
-  // }
+/**
+ * Handle all other requests by rendering the Angular application.
+ */
+app.use((req, res, next) => {
+  angularApp
+    .handle(req)
+    .then((response) => (response ? writeResponseToNodeResponse(response, res) : next()))
+    .catch(next);
 });
 
-// ---------------- HTML FALLBACK ----------------
+/**
+ * Start the server if this module is the main entry point.
+ * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ */
+if (isMainModule(import.meta.url)) {
+  const port = process.env['PORT'] || 4000;
+  app.listen(port, (error) => {
+    if (error) {
+      throw error;
+    }
 
-// Return prerendered index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(join(distFolder, indexHtml));
-});
+    console.log(`Node Express server listening on http://localhost:${port}`);
+  });
+}
 
-// ---------------- START SERVER ----------------
-app.listen(PORT, () => {
-  console.log(`✅ API and static server running at http://localhost:${PORT}`);
-});
+/**
+ * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ */
+export const reqHandler = createNodeRequestHandler(app);
