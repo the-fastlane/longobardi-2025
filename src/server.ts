@@ -19,8 +19,19 @@ const angularApp = new AngularNodeAppEngine();
  * ```
  */
 
-app.get('/api/email-lead', (req, res) => {
-  res.json({ message: 'Email lead API endpoint reached.' });
+// app.get('/api/email-lead', (req, res) => {
+//   res.json({ message: 'Email lead API endpoint reached.' });
+// });
+
+app.post('/api/email-lead', (req, res) => {
+  const data = req.body;
+  // if (!data || !data.email || !data.name) {
+  //   return res.status(400).json({ error: 'Missing required fields' });
+  // }
+
+  // TODO: Set up email sending with nodemailer, etc.
+  console.log('Received lead:', data);
+  res.json({ success: true });
 });
 
 /**

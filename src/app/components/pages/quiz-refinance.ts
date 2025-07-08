@@ -12,6 +12,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuizStep } from '../models/quiz.model';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz-refinance',
@@ -415,7 +416,10 @@ export class QuizComponent_Refinance implements AfterViewInit {
     },
   ];
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
+  ) {}
 
   ngAfterViewInit() {}
 
@@ -490,6 +494,10 @@ export class QuizComponent_Refinance implements AfterViewInit {
       console.log('Form submitted:', this.formData);
       // TODO: POST to backend here
       //this.submitForm();
+      this.http.post('/api/send-lead', this.formData).subscribe({
+        next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
+        error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
+      });
     }
   }
 
