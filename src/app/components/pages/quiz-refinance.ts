@@ -34,7 +34,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
       transition(':decrement', [style({ opacity: 0 }), animate('200ms ease-in', style({ opacity: 1 }))]),
     ]),
   ],
-  template: `<mat-progress-bar
+  template: `<div class="s-container">
+    <mat-progress-bar
       mode="determinate"
       [value]="progressPercentage"
       color="primary"></mat-progress-bar>
@@ -222,7 +223,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
           }
         </div>
       }
-    </div>`,
+    </div>
+  </div>`,
 })
 export class QuizComponent_Refinance implements AfterViewInit {
   currentStepIndex = signal(0);

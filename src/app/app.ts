@@ -16,9 +16,9 @@ import { RouterOutlet } from '@angular/router';
         </a>
       </nav>
     </header>
-    <div class="s-container">
-      <router-outlet></router-outlet>
-    </div>
+
+    <router-outlet></router-outlet>
+
     <section class="stats">
       <div class="s-container">
         <div>Direct mortgage lender <span>offering FHA, VA, USDA, Conventional, Jumbo, DSCR/Investor and bank statement loans</span></div>
