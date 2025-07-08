@@ -238,6 +238,19 @@ h2 {
   }
 }
 
+.card-grid-purchase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  mat-card {
+    max-width: 300px;
+    flex: 1 1 250px;
+  }
+}
+
 .quiz-input {
   mat-form-field {
     margin-right: 1rem;
