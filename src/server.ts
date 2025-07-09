@@ -2,42 +2,28 @@ import { AngularNodeAppEngine, createNodeRequestHandler, isMainModule, writeResp
 import express from 'express';
 import { join } from 'node:path';
 
+const app = express();
+const angularApp = new AngularNodeAppEngine();
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
-const app = express();
+// Middleware to parse JSON body
 app.use(express.json());
-const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-// app.get('/api/email-lead', (req, res) => {
-//   res.json({ message: 'Email lead API endpoint reached.' });
-// });
-
+/** ✅ API endpoint */
 app.post('/api/email-lead', (req, res) => {
   const data = req.body;
-  // if (!data || !data.email || !data.name) {
-  //   return res.status(400).json({ error: 'Missing required fields' });
+  console.log('✅ Received lead:', data);
+
+  // You can validate required fields here if needed:
+  // if (!data?.name || !data?.email) {
+  //   return res.status(400).json({ error: 'Missing name or email' });
   // }
 
-  // TODO: Set up email sending with nodemailer, etc.
-  console.log('Received lead:', data);
-  res.json({ success: true });
+  // Placeholder for sending an email
+  res.json({ success: true, received: data });
 });
 
-/**
- * Serve static files from /browser
- */
+/** ✅ Serve static frontend assets */
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
@@ -46,9 +32,7 @@ app.use(
   }),
 );
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
+/** ✅ Handle all other routes with Angular SSR */
 app.use((req, res, next) => {
   angularApp
     .handle(req)
@@ -56,22 +40,13 @@ app.use((req, res, next) => {
     .catch(next);
 });
 
-/**
- * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
+/** ✅ Start the server */
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-
-    console.log(`Node Express server listening on http://localhost:${port}`);
+  app.listen(port, () => {
+    console.log(`✅ Node Express server listening on http://localhost:${port}`);
   });
 }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
+/** ✅ Export request handler */
 export const reqHandler = createNodeRequestHandler(app);
