@@ -35,10 +35,42 @@ app.post('/api/send-lead', async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: 'leads@joemortgagepro.com',
+      from: '"Joe Mortgage Pro" <leads@joemortgagepro.com>',
       to: 'thefastlane@gmail.com',
       subject: 'New Mortgage Lead Submitted',
-      text: `A new lead was submitted:\n\n${inspect(formData, { depth: null })}`,
+      replyTo: 'no-reply@joemortgagepro.com',
+      headers: {
+        'X-Priority': '3',
+        'X-Mailer': 'JoeMortgageProMailer',
+      },
+      text: `A new mortgage lead has been submitted.
+
+  Details:
+  ${Object.entries(formData)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n')}
+
+  -- 
+  Joe Mortgage Pro
+  https://joemortgagepro.com
+  `,
+      html: `
+      <h2>New Mortgage Lead Submitted</h2>
+      <table cellpadding="6" style="border-collapse:collapse;">
+        ${Object.entries(formData)
+          .map(
+            ([key, value]) =>
+              `<tr>
+            <td style="font-weight:bold;text-align:right;">${key}:</td>
+            <td>${value}</td>
+          </tr>`,
+          )
+          .join('')}
+      </table>
+      <hr>
+      <p>Joe Mortgage Pro<br>
+      <a href="https://joemortgagepro.com">joemortgagepro.com</a></p>
+      `,
     });
 
     res.status(200).json({ success: true, message: 'Email sent' });
