@@ -36,7 +36,7 @@ app.post('/api/send-lead', async (req, res) => {
 
     await transporter.sendMail({
       from: '"Joe Mortgage Pro" <leads@joemortgagepro.com>',
-      to: 'test-8i4x0w8j3@srv1.mail-tester.com',
+      to: 'thefastlane@gmail.com',
       subject: `${formData.loanType} - Lead Received`,
       replyTo: 'no-reply@joemortgagepro.com',
       text: `A new mortgage lead has been submitted.
