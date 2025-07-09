@@ -5,6 +5,7 @@ import { join } from 'node:path';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
+app.use(express.json());
 const angularApp = new AngularNodeAppEngine();
 
 /**
