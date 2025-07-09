@@ -419,7 +419,9 @@ export class QuizComponent_Refinance implements AfterViewInit {
   constructor(
     private snackBar: MatSnackBar,
     private http: HttpClient,
-  ) {}
+  ) {
+    this.formData['loanType'] = 'Refinance';
+  }
 
   ngAfterViewInit() {}
 

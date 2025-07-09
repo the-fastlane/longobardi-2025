@@ -37,12 +37,8 @@ app.post('/api/send-lead', async (req, res) => {
     await transporter.sendMail({
       from: '"Joe Mortgage Pro" <leads@joemortgagepro.com>',
       to: 'thefastlane@gmail.com',
-      subject: 'New Mortgage Lead Submitted',
+      subject: `${formData.loanType} - Lead Received`,
       replyTo: 'no-reply@joemortgagepro.com',
-      headers: {
-        'X-Priority': '3',
-        'X-Mailer': 'JoeMortgageProMailer',
-      },
       text: `A new mortgage lead has been submitted.
 
   Details:
@@ -51,7 +47,7 @@ app.post('/api/send-lead', async (req, res) => {
     .join('\n')}
 
   -- 
-  Joe Mortgage Pro
+  Joe, Mortgage Pro
   https://joemortgagepro.com
   `,
       html: `
