@@ -490,14 +490,15 @@ export class QuizComponent_Refinance implements AfterViewInit {
           }
         });
       }
-    } else {
-      console.log('Form submitted:', this.formData);
-      // TODO: POST to backend here
-      //this.submitForm();
-      this.http.post('/api/send-lead', this.formData).subscribe({
-        next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
-        error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
-      });
+
+      if (this.currentStep.type === 'results') {
+        console.log('Form submitted:', this.formData);
+        // TODO: POST to backend here
+        this.http.post('/api/send-lead', this.formData).subscribe({
+          next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
+          error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
+        });
+      }
     }
   }
 
