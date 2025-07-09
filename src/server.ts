@@ -51,7 +51,7 @@ app.post('/api/send-lead', async (req, res) => {
   https://joemortgagepro.com
   `,
       html: `
-      <h2>New Mortgage Lead Submitted</h2>
+      <h2>Submitted by: ${formData.name || 'Unknown'}</h2>
       <table cellpadding="6" style="border-collapse:collapse;">
         ${Object.entries(formData)
           .map(
@@ -64,7 +64,7 @@ app.post('/api/send-lead', async (req, res) => {
           .join('')}
       </table>
       <hr>
-      <p>Joe Mortgage Pro<br>
+      <p>Joe, Mortgage Pro<br>
       <a href="https://joemortgagepro.com">joemortgagepro.com</a></p>
       `,
     });
