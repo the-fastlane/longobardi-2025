@@ -25,7 +25,8 @@ const angularApp = new AngularNodeAppEngine();
 app.post('/api/send-lead', async (req, res) => {
   const formData = req.body;
   try {
-    const nodemailer = await import('nodemailer'); // ✅ dynamically load nodemailer
+    const nodemailerModule = await import('nodemailer'); // ✅ dynamically load nodemailer
+    const nodemailer = nodemailerModule.default;
 
     const transporter = nodemailer.createTransport({
       sendmail: true,
