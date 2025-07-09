@@ -1,6 +1,8 @@
 import { AngularNodeAppEngine, createNodeRequestHandler, isMainModule, writeResponseToNodeResponse } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import nodemailer from 'nodemailer';
+import { inspect } from 'util';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -21,14 +23,33 @@ const angularApp = new AngularNodeAppEngine();
  * ```
  */
 
+// nodemailer transport using local sendmail
+const transporter = nodemailer.createTransport({
+  sendmail: true,
+  newline: 'unix',
+  path: '/usr/sbin/sendmail',
+});
+
 app.post('/api/send-lead', async (req, res) => {
   // Handle the lead submission here
   // For example, you can send an email or save to a database
-  console.log('Received lead:', req.body);
+  //console.log('Received lead:', req.body);
 
-  // Simulate success response
-  res.status(200).json({ message: 'Lead submitted successfully' });
-  // In a real application, handle errors and send appropriate responses
+  const formData = req.body;
+  try {
+    await transporter.sendMail({
+      from: 'leads@joemortgagepro.com',
+      to: 'thefastlane@gmail.com',
+      subject: 'New Mortgage Lead Submitted',
+      text: `A new lead was submitted:\n\n${inspect(formData, { depth: null })}`,
+    });
+
+    console.log('Lead emailed successfully:', formData);
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Failed to send lead' });
+  }
 });
 
 /**
