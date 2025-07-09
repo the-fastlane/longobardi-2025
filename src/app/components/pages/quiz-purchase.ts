@@ -12,6 +12,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuizStep } from '../models/quiz.model';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-purchase',
@@ -27,6 +29,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
   animations: [
     trigger('fadeStep', [
@@ -142,12 +145,11 @@ import { trigger, transition, style, animate } from '@angular/animations';
       <!-- RESULTS TYPE -->
       @if (currentStep.type === 'results') {
         <div class="results-step step">
-          <pre>{{ formData | json }}</pre>
           <button
-            mat-raised-button
+            mat-filled-button
             color="primary"
-            (click)="previousStep()">
-            ← Back
+            routerLink="/">
+            Continue to Homepage
           </button>
         </div>
       }
@@ -386,7 +388,12 @@ export class QuizComponent_Purchase implements AfterViewInit {
     },
   ];
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private http: HttpClient,
+  ) {
+    this.formData['loanType'] = 'Purchase';
+  }
 
   ngAfterViewInit() {}
 
@@ -463,10 +470,14 @@ export class QuizComponent_Purchase implements AfterViewInit {
           }
         });
       }
-    } else {
-      console.log('Form submitted:', this.formData);
-      // TODO: POST to backend here
-      //this.submitForm();
+
+      if (this.currentStep.type === 'results') {
+        console.log('Form submitted:', this.formData);
+        this.http.post('/api/send-lead', this.formData).subscribe({
+          next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
+          error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
+        });
+      }
     }
   }
 

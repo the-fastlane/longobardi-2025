@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuizStep } from '../models/quiz.model';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-refinance',
@@ -28,6 +29,7 @@ import { HttpClient } from '@angular/common/http';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
   animations: [
     trigger('fadeStep', [
@@ -97,12 +99,11 @@ import { HttpClient } from '@angular/common/http';
       <!-- RESULTS TYPE -->
       @if (currentStep.type === 'results') {
         <div class="results-step step">
-          <pre>{{ formData | json }}</pre>
           <button
-            mat-raised-button
+            mat-filled-button
             color="primary"
-            (click)="previousStep()">
-            ← Back
+            routerLink="/">
+            Continue to Homepage
           </button>
         </div>
       }
@@ -495,7 +496,6 @@ export class QuizComponent_Refinance implements AfterViewInit {
 
       if (this.currentStep.type === 'results') {
         console.log('Form submitted:', this.formData);
-        // TODO: POST to backend here
         this.http.post('/api/send-lead', this.formData).subscribe({
           next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
           error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
