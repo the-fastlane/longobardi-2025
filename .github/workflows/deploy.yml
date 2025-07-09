@@ -35,5 +35,5 @@ jobs:
           ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "systemctl restart nginx"
           # Restart the forever process (assumes process named 'longobardi-api')
           ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "forever stop longobardi-api || true"
-          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "forever start --uid longobardi-api /var/www/longobardi/server/server.mjs"
+          ssh -i private_key -o StrictHostKeyChecking=no root@$DROPLET_IP "forever start -a --uid longobardi-api /var/www/longobardi/server/server.mjs"
           rm -f private_key  # Clean up private key after deployment
