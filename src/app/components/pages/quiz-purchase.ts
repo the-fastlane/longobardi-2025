@@ -345,7 +345,7 @@ export class QuizComponent_Purchase implements AfterViewInit {
       question: 'What is your downpayment range?',
       formKey: 'downpaymentRange',
       sliderConfig: {
-        min: 20000,
+        min: 0,
         max: 400000,
         step: 20000,
         defaultValue: 200000,
