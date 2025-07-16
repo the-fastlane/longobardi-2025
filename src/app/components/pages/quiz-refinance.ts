@@ -15,6 +15,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 
+declare const gtag: (...args: any[]) => void;
+
 @Component({
   selector: 'app-quiz-refinance',
   imports: [
@@ -480,22 +482,41 @@ export class QuizComponent_Refinance implements AfterViewInit {
   nextStep() {
     this.sliderValue = null;
     const steps = this.visibleSteps;
+
+    // Fire tracking event BEFORE step updates
+    const step = this.currentStep;
+    gtag('event', 'lead_form_step', {
+      event_category: 'Lead Form',
+      event_label: step?.question || `Refinance - Step ${this.currentStepIndex() + 1}`,
+      step_index: this.currentStepIndex() + 1,
+      form_key: step?.formKey || '',
+    });
+
     if (this.currentStepIndex() < steps.length - 1) {
       this.currentStepIndex.update((v) => v + 1);
-      // Reset input value for the new step if it's an input type
+
       const newStep = this.visibleSteps[this.currentStepIndex()];
       if (newStep && newStep.type === 'input' && this.formData[newStep.formKey] === undefined) {
-        //this.formData[newStep.formKey] = '';
-        // Clear the input element's value directly
         setTimeout(() => {
-          if (this.inputElRef && this.inputElRef.nativeElement) {
+          if (this.inputElRef?.nativeElement) {
             this.inputElRef.nativeElement.value = '';
           }
         });
       }
 
       if (this.currentStep.type === 'results') {
-        console.log('Form submitted:', this.formData);
+        //console.log('Form submitted:', this.formData);
+
+        // Track form completion
+        gtag('event', 'conversion', {
+          send_to: 'AW-11044411079/vJleCOn4vogYEMetsZIp',
+        });
+
+        gtag('event', 'lead_form_completed', {
+          event_category: 'Lead Form',
+          event_label: 'Refinance Form Completed',
+        });
+
         this.http.post('/api/send-lead', this.formData).subscribe({
           next: () => this.snackBar.open('Submitted successfully!', 'Close', { duration: 3000 }),
           error: () => this.snackBar.open('Error sending your info. Try again.', 'Close', { duration: 3000 }),
